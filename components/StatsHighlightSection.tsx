@@ -9,6 +9,9 @@ const StatCounter: React.FC<{ endValue: number; suffix: string; text: string }> 
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        const currentElement = ref.current;
+        if (!currentElement) return;
+
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
@@ -29,7 +32,8 @@ const StatCounter: React.FC<{ endValue: number; suffix: string; text: string }> 
                         }
                     }, frameRate);
                     
-                    observer.disconnect();
+                    // Unobserve the element once the animation has started to prevent re-triggering.
+                    observer.unobserve(currentElement);
                 }
             },
             {
@@ -37,14 +41,11 @@ const StatCounter: React.FC<{ endValue: number; suffix: string; text: string }> 
             }
         );
 
-        if (ref.current) {
-            observer.observe(ref.current);
-        }
+        observer.observe(currentElement);
 
         return () => {
-            if (ref.current) {
-                 observer.unobserve(ref.current);
-            }
+            // Cleanup: unobserve the element when the component unmounts.
+            observer.unobserve(currentElement);
         };
     }, [endValue]);
 
