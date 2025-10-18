@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 
 interface StatsHighlightSectionProps {
@@ -32,8 +33,6 @@ const StatCounter: React.FC<{ endValue: number; suffix: string; text: string }> 
                         }
                     }, frameRate);
                     
-                    // Unobserve the element once the animation has started to prevent re-triggering.
-                    // FIX: Pass the element to unobserve as required by the IntersectionObserver API.
                     observer.unobserve(currentElement);
                 }
             },
@@ -45,13 +44,10 @@ const StatCounter: React.FC<{ endValue: number; suffix: string; text: string }> 
         observer.observe(currentElement);
 
         return () => {
-            // Cleanup: unobserve the element when the component unmounts.
-            // FIX: Pass the element to unobserve as required by the IntersectionObserver API.
             observer.unobserve(currentElement);
         };
     }, [endValue]);
 
-    // FIX: Added missing return statement to render the component's JSX.
     return (
         <div ref={ref} className="text-center">
             <p className="text-4xl md:text-5xl font-extrabold text-blue-500">
