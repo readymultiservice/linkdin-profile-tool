@@ -1,8 +1,7 @@
-
 import React, { useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
-import type { Experience, Project, ResumeFormData, EditorContact } from '../types';
+import type { ResumeFormData, EditorContact } from '../types';
 import { TrashIcon } from './icons/TrashIcon';
 import { PlusIcon } from './icons/PlusIcon';
 import ModernResumeTemplate from './ModernResumeTemplate';
@@ -24,7 +23,6 @@ import { ShareIcon } from './icons/ShareIcon';
 import { EyeIcon } from './icons/EyeIcon';
 import { UserCircleIcon } from './icons/UserCircleIcon';
 import { SearchIcon } from './icons/SearchIcon';
-
 
 const mockContacts: EditorContact[] = [
     { id: 1, name: 'Crett Mai Vcess', role: 'Chisiao lis', date: 'Date 2/10/14', avatar: 'https://i.pravatar.cc/150?img=1' },

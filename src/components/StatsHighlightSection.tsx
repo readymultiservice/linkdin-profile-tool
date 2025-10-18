@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 
 interface StatsHighlightSectionProps {
@@ -33,6 +32,7 @@ const StatCounter: React.FC<{ endValue: number; suffix: string; text: string }> 
                         }
                     }, frameRate);
                     
+                    // Unobserve the element once the animation has started to prevent re-triggering.
                     observer.unobserve(currentElement);
                 }
             },
@@ -44,7 +44,10 @@ const StatCounter: React.FC<{ endValue: number; suffix: string; text: string }> 
         observer.observe(currentElement);
 
         return () => {
-            observer.unobserve(currentElement);
+            // Cleanup: unobserve the element when the component unmounts.
+            if(currentElement) {
+                observer.unobserve(currentElement);
+            }
         };
     }, [endValue]);
 

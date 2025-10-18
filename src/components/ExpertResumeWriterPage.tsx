@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { BriefcaseCheckIcon } from './icons/BriefcaseCheckIcon';
 import { UserEditIcon } from './icons/UserEditIcon';

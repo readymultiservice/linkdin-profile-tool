@@ -1,4 +1,3 @@
-
 export type AppView =
   | 'home'
   | 'instant-score'

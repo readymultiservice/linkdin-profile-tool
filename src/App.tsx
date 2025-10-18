@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import type { AppView, BlogPost, Slide, User, TimeoutDuration, ConnectedAccount, WhatsAppContact, WhatsAppCampaign, WhatsAppTemplate, Page, Service, ServiceCategory, ActivityLog, Post, Category, Tag } from './types';
 
